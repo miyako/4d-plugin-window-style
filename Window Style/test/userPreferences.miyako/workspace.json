@@ -1,0 +1,24 @@
+{
+	"editors": [
+		{
+			"type": "method",
+			"id": 2147483638,
+			"previousTabType": "form",
+			"previousTabID": 218,
+			"codeDescriptor": {
+				"type": 2,
+				"formName": "TEST",
+				"objectName": "Button2",
+				"methodPath": "/SOURCES/Forms/TEST/ObjectMethods/Button2.4dm"
+			}
+		},
+		{
+			"type": "form",
+			"id": 218,
+			"formName": "TEST"
+		},
+		{
+			"type": "explorer"
+		}
+	]
+}

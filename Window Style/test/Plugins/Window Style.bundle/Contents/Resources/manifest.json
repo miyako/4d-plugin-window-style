@@ -1,0 +1,11 @@
+{
+    "name": "Window Style",
+    "id": 20000,
+    "commands": [
+        {
+            "theme": "Window Style",
+            "syntax": "SET WINDOW STYLE(&L;&J)",
+            "threadSafe": false
+        }
+    ]
+}
