@@ -1,21 +1,19 @@
-{
+﻿{
 	"editors": [
 		{
+			"type": "form",
+			"id": 1,
+			"formName": "TEST"
+		},
+		{
 			"type": "method",
-			"id": 2147483638,
-			"previousTabType": "form",
-			"previousTabID": 218,
+			"id": 2147483632,
 			"codeDescriptor": {
 				"type": 2,
 				"formName": "TEST",
-				"objectName": "Button2",
-				"methodPath": "/SOURCES/Forms/TEST/ObjectMethods/Button2.4dm"
+				"objectName": "Button5",
+				"methodPath": "/SOURCES/Forms/TEST/ObjectMethods/Button5.4dm"
 			}
-		},
-		{
-			"type": "form",
-			"id": 218,
-			"formName": "TEST"
 		},
 		{
 			"type": "explorer"

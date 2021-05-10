@@ -1,4 +1,4 @@
-{
+﻿{
 	"Sources/Methods/generate_project_xcode.4dm": {
 		"startSelection": 0,
 		"endSelection": 0,
@@ -198,10 +198,10 @@
 		"stamp": "2019-12-13T04:37:40.619Z"
 	},
 	"Sources/Forms/TEST/ObjectMethods/Button.4dm": {
-		"startSelection": 109,
-		"endSelection": 109,
-		"firstSelectedLine": 1,
-		"lastSelectedLine": 1,
+		"startSelection": 32,
+		"endSelection": 0,
+		"firstSelectedLine": 8,
+		"lastSelectedLine": 5,
 		"folding": [],
 		"bookmarks": [],
 		"stamp": "2021-04-23T07:55:40.668Z"
@@ -232,5 +232,95 @@
 		"folding": [],
 		"bookmarks": [],
 		"stamp": "2021-04-23T08:15:16.959Z"
+	},
+	"Sources/Forms/TEST vibrance/ObjectMethods/Button2.4dm": {
+		"startSelection": 0,
+		"endSelection": 0,
+		"firstSelectedLine": 4,
+		"lastSelectedLine": 4,
+		"folding": [],
+		"bookmarks": [],
+		"stamp": "2021-05-10T13:24:25.151Z"
+	},
+	"Sources/Forms/TEST vibrance/ObjectMethods/Button.4dm": {
+		"startSelection": 0,
+		"endSelection": 0,
+		"firstSelectedLine": 15,
+		"lastSelectedLine": 15,
+		"folding": [],
+		"bookmarks": [],
+		"stamp": ""
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button3.4dm": {
+		"startSelection": 38,
+		"endSelection": 38,
+		"firstSelectedLine": 7,
+		"lastSelectedLine": 7,
+		"folding": [],
+		"bookmarks": [],
+		"stamp": "2021-05-10T13:15:50.332Z"
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button4.4dm": {
+		"startSelection": 10,
+		"endSelection": 10,
+		"firstSelectedLine": 3,
+		"lastSelectedLine": 3,
+		"folding": [],
+		"bookmarks": [],
+		"stamp": "2021-05-10T13:15:50.333Z"
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button5.4dm": {
+		"startSelection": 24,
+		"endSelection": 24,
+		"firstSelectedLine": 4,
+		"lastSelectedLine": 4,
+		"folding": [],
+		"bookmarks": [],
+		"stamp": "2021-05-10T13:34:24.340Z"
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button10.4dm": {
+		"startSelection": 27,
+		"endSelection": 27,
+		"firstSelectedLine": 5,
+		"lastSelectedLine": 5,
+		"folding": [],
+		"bookmarks": [],
+		"stamp": "2021-05-10T13:35:53.044Z"
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button9.4dm": {
+		"startSelection": 27,
+		"endSelection": 27,
+		"firstSelectedLine": 5,
+		"lastSelectedLine": 5,
+		"folding": [],
+		"bookmarks": [],
+		"stamp": "2021-05-10T13:35:59.491Z"
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button8.4dm": {
+		"startSelection": 27,
+		"endSelection": 27,
+		"firstSelectedLine": 5,
+		"lastSelectedLine": 5,
+		"folding": [],
+		"bookmarks": [],
+		"stamp": "2021-05-10T13:36:07.092Z"
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button7.4dm": {
+		"startSelection": 27,
+		"endSelection": 27,
+		"firstSelectedLine": 5,
+		"lastSelectedLine": 5,
+		"folding": [],
+		"bookmarks": [],
+		"stamp": "2021-05-10T13:36:13.107Z"
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button6.4dm": {
+		"startSelection": 27,
+		"endSelection": 27,
+		"firstSelectedLine": 5,
+		"lastSelectedLine": 5,
+		"folding": [],
+		"bookmarks": [],
+		"stamp": "2021-05-10T13:36:20.905Z"
 	}
 }

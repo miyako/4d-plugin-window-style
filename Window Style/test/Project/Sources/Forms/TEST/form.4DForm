@@ -1,4 +1,4 @@
-{
+﻿{
 	"$4d": {
 		"version": "1",
 		"kind": "form"
@@ -46,7 +46,8 @@
 					"events": [
 						"onClick"
 					],
-					"method": "ObjectMethods/Button.4dm"
+					"method": "ObjectMethods/Button.4dm",
+					"focusable": false
 				},
 				"Button1": {
 					"type": "button",
@@ -58,7 +59,8 @@
 					"events": [
 						"onClick"
 					],
-					"method": "ObjectMethods/Button1.4dm"
+					"method": "ObjectMethods/Button1.4dm",
+					"focusable": false
 				},
 				"Button2": {
 					"type": "button",
@@ -70,36 +72,117 @@
 					"events": [
 						"onClick"
 					],
-					"method": "ObjectMethods/Button2.4dm"
+					"method": "ObjectMethods/Button2.4dm",
+					"focusable": false
 				},
 				"Button3": {
 					"type": "button",
-					"text": "Vib",
-					"top": 142,
+					"text": "Vib7",
+					"top": 262,
 					"left": 20,
-					"width": 47,
+					"width": 67,
 					"height": 22,
 					"events": [
 						"onClick"
 					],
-					"method": "ObjectMethods/Button3.4dm"
+					"method": "ObjectMethods/Button3.4dm",
+					"focusable": false
 				},
 				"Button4": {
 					"type": "button",
 					"text": "X",
 					"top": 142,
-					"left": 72,
-					"width": 55,
+					"left": 92,
+					"width": 35,
 					"height": 22,
 					"events": [
 						"onClick"
 					],
-					"method": "ObjectMethods/Button4.4dm"
+					"method": "ObjectMethods/Button4.4dm",
+					"focusable": false
+				},
+				"Button5": {
+					"type": "button",
+					"text": "Vib2",
+					"top": 162,
+					"left": 20,
+					"width": 67,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/Button5.4dm",
+					"focusable": false
+				},
+				"Button6": {
+					"type": "button",
+					"text": "Vib1",
+					"top": 142,
+					"left": 20,
+					"width": 67,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/Button6.4dm",
+					"focusable": false
+				},
+				"Button7": {
+					"type": "button",
+					"text": "Vib3",
+					"top": 182,
+					"left": 20,
+					"width": 67,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/Button7.4dm",
+					"focusable": false
+				},
+				"Button8": {
+					"type": "button",
+					"text": "Vib4",
+					"top": 202,
+					"left": 20,
+					"width": 67,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/Button8.4dm",
+					"focusable": false
+				},
+				"Button9": {
+					"type": "button",
+					"text": "Vib5",
+					"top": 222,
+					"left": 20,
+					"width": 67,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/Button9.4dm",
+					"focusable": false
+				},
+				"Button10": {
+					"type": "button",
+					"text": "Vib6",
+					"top": 242,
+					"left": 20,
+					"width": 67,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/Button10.4dm",
+					"focusable": false
 				}
 			}
 		}
 	],
-	"geometryStamp": 24,
+	"geometryStamp": 62,
 	"method": "method.4dm",
 	"colorScheme": "dark",
 	"editor": {

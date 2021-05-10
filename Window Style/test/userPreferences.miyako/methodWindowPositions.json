@@ -1,4 +1,4 @@
-{
+﻿{
 	"Sources/DatabaseMethods/onStartup.4dm": {
 		"left": 322,
 		"top": 651,
@@ -162,10 +162,10 @@
 		"height": 757
 	},
 	"Sources/Forms/TEST/ObjectMethods/Button.4dm": {
-		"left": 133,
-		"top": 129,
+		"left": 180,
+		"top": 446,
 		"width": 780,
-		"height": 400
+		"height": 374
 	},
 	"Sources/Forms/TEST/method.4dm": {
 		"left": 133,
@@ -180,9 +180,69 @@
 		"height": 374
 	},
 	"Sources/Forms/TEST/ObjectMethods/Button2.4dm": {
-		"left": 235,
-		"top": 205,
+		"left": 231,
+		"top": 485,
 		"width": 780,
 		"height": 400
+	},
+	"Sources/Forms/TEST vibrance/ObjectMethods/Button2.4dm": {
+		"left": 231,
+		"top": 485,
+		"width": 780,
+		"height": 400
+	},
+	"Sources/Forms/TEST vibrance/ObjectMethods/Button.4dm": {
+		"left": 180,
+		"top": 368,
+		"width": 780,
+		"height": 400
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button3.4dm": {
+		"left": 180,
+		"top": 394,
+		"width": 780,
+		"height": 374
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button4.4dm": {
+		"left": 180,
+		"top": 394,
+		"width": 780,
+		"height": 374
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button5.4dm": {
+		"left": 576,
+		"top": 336,
+		"width": 780,
+		"height": 374
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button10.4dm": {
+		"left": 180,
+		"top": 446,
+		"width": 780,
+		"height": 374
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button9.4dm": {
+		"left": 180,
+		"top": 446,
+		"width": 780,
+		"height": 374
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button8.4dm": {
+		"left": 180,
+		"top": 446,
+		"width": 780,
+		"height": 374
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button7.4dm": {
+		"left": 180,
+		"top": 446,
+		"width": 780,
+		"height": 374
+	},
+	"Sources/Forms/TEST/ObjectMethods/Button6.4dm": {
+		"left": 180,
+		"top": 446,
+		"width": 780,
+		"height": 374
 	}
 }
