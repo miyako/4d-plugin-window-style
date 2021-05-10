@@ -126,6 +126,50 @@ static void setContentViewImage(setContentViewImage_t *params) {
     }
 }
 
+typedef struct {
+    NSWindow *window;
+    BOOL activate;
+    NSInteger state;
+    NSInteger material;
+    NSInteger blendingMode;
+    BOOL emphasized;
+} setVibrance_t;
+
+// https://developer.apple.com/design/human-interface-guidelines/macos/visual-design/translucency/
+static void setVibrance(setVibrance_t *params) {
+    NSArray* subviews = [[params->window contentView] subviews];
+
+    // remove any previous vibrancy view
+    NSArray *visualEffectViews = [subviews filteredArrayUsingPredicate:[NSPredicate predicateWithBlock:^BOOL(id view, NSDictionary *bindings) {
+        return [view isKindOfClass: NSVisualEffectView.self];
+    }]];
+    for (NSView* view in visualEffectViews) {
+        [view removeFromSuperview];
+    }
+
+    if(params->activate) {
+        // add the special view bellow to activate vibrancy
+        NSVisualEffectView* effectView = [NSVisualEffectView new];
+        effectView.translatesAutoresizingMaskIntoConstraints = NO;
+        effectView.state = (NSVisualEffectState) params->state;
+        effectView.material = (NSVisualEffectMaterial) params->material;
+        effectView.emphasized = params->emphasized;
+        effectView.blendingMode = (NSVisualEffectBlendingMode) params->blendingMode;
+        // add bellow first view
+        NSView* firstView = subviews.firstObject;
+        if(firstView==nil) {
+            [[params->window contentView] addSubview:effectView];
+        } else {
+            [[params->window contentView] addSubview:effectView positioned: NSWindowBelow relativeTo: firstView];
+        }
+        // constraints to keep fullscreen with window
+        [effectView.leadingAnchor constraintEqualToAnchor: [params->window contentView].leadingAnchor].active = YES;
+        [effectView.trailingAnchor constraintEqualToAnchor: [params->window contentView].trailingAnchor].active = YES;
+        [effectView.topAnchor constraintEqualToAnchor: [params->window contentView].topAnchor].active = YES;
+        [effectView.bottomAnchor constraintEqualToAnchor: [params->window contentView].bottomAnchor].active = YES;
+    }
+}
+
 void SET_WINDOW_STYLE(PA_PluginParameters params) {
 
     PA_long32 arg1 = PA_GetLongParameter(params, 1);
@@ -227,7 +271,29 @@ void SET_WINDOW_STYLE(PA_PluginParameters params) {
                             
                 PA_RunInMainProcess((PA_RunInMainProcessProcPtr)setOpaque, &params);
             }
-              
+
+            if(ob_is_defined(options, L"vibrance")) {
+                PA_ObjectRef vibrance = ob_get_o(options, L"vibrance");
+
+                setVibrance_t params;
+                params.window = window;
+                params.state = 0;
+                params.material = 0;
+                params.blendingMode = 0;
+                params.emphasized = false;
+                if (vibrance==nil) {
+                    params.activate = ob_get_b(options, L"vibrance"); // just activate or deactivate it
+                } else {
+                    params.activate = true;
+                    params.state = ob_get_n(vibrance, L"state");
+                    params.material = ob_get_n(vibrance, L"material");
+                    params.blendingMode = ob_get_n(vibrance, L"blendingMode");
+                    params.emphasized = ob_get_b(options, L"emphasized");
+                }
+
+                PA_RunInMainProcess((PA_RunInMainProcessProcPtr)setVibrance, &params);
+            }
+
         }
         
     }

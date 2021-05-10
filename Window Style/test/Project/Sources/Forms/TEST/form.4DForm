@@ -71,11 +71,35 @@
 						"onClick"
 					],
 					"method": "ObjectMethods/Button2.4dm"
+				},
+				"Button3": {
+					"type": "button",
+					"text": "Vib",
+					"top": 142,
+					"left": 20,
+					"width": 47,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/Button3.4dm"
+				},
+				"Button4": {
+					"type": "button",
+					"text": "X",
+					"top": 142,
+					"left": 72,
+					"width": 55,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/Button4.4dm"
 				}
 			}
 		}
 	],
-	"geometryStamp": 12,
+	"geometryStamp": 24,
 	"method": "method.4dm",
 	"colorScheme": "dark",
 	"editor": {
