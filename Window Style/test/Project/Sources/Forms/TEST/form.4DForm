@@ -1,4 +1,4 @@
-﻿{
+{
 	"$4d": {
 		"version": "1",
 		"kind": "form"
@@ -178,11 +178,24 @@
 					],
 					"method": "ObjectMethods/Button10.4dm",
 					"focusable": false
+				},
+				"Button11": {
+					"type": "button",
+					"text": "hide t",
+					"top": 40,
+					"left": 160,
+					"width": 107,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/Button11.4dm",
+					"focusable": false
 				}
 			}
 		}
 	],
-	"geometryStamp": 62,
+	"geometryStamp": 69,
 	"method": "method.4dm",
 	"colorScheme": "dark",
 	"editor": {

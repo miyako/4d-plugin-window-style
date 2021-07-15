@@ -102,6 +102,29 @@ static void setTitlebarAppearsTransparent(setTitlebarAppearsTransparent_t *param
 
 typedef struct {
     NSWindow *window;
+    BOOL visible;
+} setVisible_t;
+
+static void setVisible(setVisible_t *params) {
+    
+    /*
+    setTitlebarAppearsTransparent_t param;
+    param.window = params->window;
+    param.titlebarAppearsTransparent = params->visible;
+
+    setTitlebarAppearsTransparent(&param);
+    */
+    
+    if(params->visible){
+        [params->window setTitleVisibility:NSWindowTitleVisible];
+    }else{
+        [params->window setTitleVisibility:NSWindowTitleHidden];
+    }
+
+}
+
+typedef struct {
+    NSWindow *window;
     BOOL movableByWindowBackground;
 } setMovableByWindowBackground_t;
 
@@ -270,6 +293,16 @@ void SET_WINDOW_STYLE(PA_PluginParameters params) {
                 params.opaque  = opaque;
                             
                 PA_RunInMainProcess((PA_RunInMainProcessProcPtr)setOpaque, &params);
+            }
+            
+            if(ob_is_defined(options, L"titlebarVisible")) {
+                BOOL visible = ob_get_b(options, L"titlebarVisible");
+                
+                setVisible_t params;
+                params.window = window;
+                params.visible  = visible;
+                            
+                PA_RunInMainProcess((PA_RunInMainProcessProcPtr)setVisible, &params);
             }
 
             if(ob_is_defined(options, L"vibrance")) {

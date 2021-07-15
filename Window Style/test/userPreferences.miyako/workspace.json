@@ -1,18 +1,28 @@
-﻿{
+{
 	"editors": [
 		{
 			"type": "form",
-			"id": 1,
+			"id": 354,
 			"formName": "TEST"
 		},
 		{
 			"type": "method",
-			"id": 2147483632,
+			"id": 2147483626,
 			"codeDescriptor": {
 				"type": 2,
 				"formName": "TEST",
-				"objectName": "Button5",
-				"methodPath": "/SOURCES/Forms/TEST/ObjectMethods/Button5.4dm"
+				"objectName": "Button11",
+				"methodPath": "/SOURCES/Forms/TEST/ObjectMethods/Button11.4dm"
+			}
+		},
+		{
+			"type": "method",
+			"id": 2147483637,
+			"codeDescriptor": {
+				"type": 2,
+				"formName": "TEST",
+				"objectName": "Button",
+				"methodPath": "/SOURCES/Forms/TEST/ObjectMethods/Button.4dm"
 			}
 		},
 		{
