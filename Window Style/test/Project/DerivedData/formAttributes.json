@@ -3,6 +3,10 @@
 		"TEST": {
 			"timeStamp": "2021-07-15T22:44:53.402Z",
 			"destination": "detailScreen"
+		},
+		"TEST1": {
+			"timeStamp": "2021-07-15T22:58:34.443Z",
+			"destination": "detailScreen"
 		}
 	}
 }

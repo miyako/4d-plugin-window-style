@@ -2,28 +2,8 @@
 	"editors": [
 		{
 			"type": "form",
-			"id": 354,
-			"formName": "TEST"
-		},
-		{
-			"type": "method",
-			"id": 2147483626,
-			"codeDescriptor": {
-				"type": 2,
-				"formName": "TEST",
-				"objectName": "Button11",
-				"methodPath": "/SOURCES/Forms/TEST/ObjectMethods/Button11.4dm"
-			}
-		},
-		{
-			"type": "method",
-			"id": 2147483637,
-			"codeDescriptor": {
-				"type": 2,
-				"formName": "TEST",
-				"objectName": "Button",
-				"methodPath": "/SOURCES/Forms/TEST/ObjectMethods/Button.4dm"
-			}
+			"id": 219,
+			"formName": "TEST1"
 		},
 		{
 			"type": "explorer"

@@ -1,0 +1,74 @@
+{
+	"$4d": {
+		"version": "1",
+		"kind": "form"
+	},
+	"windowSizingX": "variable",
+	"windowSizingY": "variable",
+	"windowMinWidth": 0,
+	"windowMinHeight": 0,
+	"windowMaxWidth": 32767,
+	"windowMaxHeight": 32767,
+	"rightMargin": 20,
+	"bottomMargin": 20,
+	"events": [
+		"onLoad",
+		"onPageChange",
+		"onValidate",
+		"onClick",
+		"onDoubleClick",
+		"onOutsideCall",
+		"onBeginDragOver",
+		"onDragOver",
+		"onDrop",
+		"onAfterKeystroke",
+		"onMenuSelect",
+		"onPluginArea",
+		"onAfterEdit",
+		"onTimer",
+		"onBoundVariableChange"
+	],
+	"windowTitle": "window title",
+	"destination": "detailScreen",
+	"pages": [
+		{
+			"objects": {
+				"Rectangle": {
+					"type": "rectangle",
+					"top": 0,
+					"left": 0,
+					"width": 171,
+					"height": 267,
+					"stroke": "transparent"
+				}
+			}
+		},
+		{
+			"objects": {
+				"Button11": {
+					"type": "button",
+					"text": "hide t",
+					"top": 216,
+					"left": 186,
+					"width": 107,
+					"height": 22,
+					"events": [
+						"onClick"
+					],
+					"method": "ObjectMethods/Button11.4dm",
+					"focusable": false
+				}
+			}
+		}
+	],
+	"geometryStamp": 79,
+	"method": "method.4dm",
+	"colorScheme": "dark",
+	"editor": {
+		"activeView": "View 1",
+		"defaultView": "View 1",
+		"views": {
+			"View 1": {}
+		}
+	}
+}

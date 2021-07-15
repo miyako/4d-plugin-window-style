@@ -106,19 +106,24 @@ typedef struct {
 } setVisible_t;
 
 static void setVisible(setVisible_t *params) {
-    
-    /*
-    setTitlebarAppearsTransparent_t param;
-    param.window = params->window;
-    param.titlebarAppearsTransparent = params->visible;
-
-    setTitlebarAppearsTransparent(&param);
-    */
-    
+        
+    //on hides the title string
     if(params->visible){
         [params->window setTitleVisibility:NSWindowTitleVisible];
     }else{
         [params->window setTitleVisibility:NSWindowTitleHidden];
+        
+        //only disables the button
+        /*
+        [params->window setStyleMask:[params->window styleMask]&~NSWindowStyleMaskClosable];
+        [params->window setStyleMask:[params->window styleMask]&~NSWindowStyleMaskMiniaturizable];
+        [params->window setStyleMask:[params->window styleMask]&~NSWindowStyleMaskResizable];
+        */
+        
+        //crash
+         /*
+          [params->window setStyleMask:[params->window styleMask]&~NSWindowStyleMaskTitled];
+        */
     }
 
 }
