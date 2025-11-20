@@ -87,17 +87,75 @@ static void setOpaque(setOpaque_t *params) {
 typedef struct {
     NSWindow *window;
     BOOL titlebarAppearsTransparent;
+    CGFloat x;
+    CGFloat y;
 } setTitlebarAppearsTransparent_t;
+
+static void adjustTrafficLights(NSWindow *window, CGFloat x, CGFloat y) {
+    NSArray *buttons = @[
+            [window standardWindowButton:NSWindowCloseButton],
+            [window standardWindowButton:NSWindowMiniaturizeButton],
+            [window standardWindowButton:NSWindowZoomButton]
+        ];
+    
+    for (NSButton *button in buttons) {
+        if(button != nil) {
+            NSRect frame = button.frame;
+            frame.origin.x += x;
+            frame.origin.y -= y;
+            button.frame = frame;
+        }
+    }
+}
 
 static void setTitlebarAppearsTransparent(setTitlebarAppearsTransparent_t *params) {
  
-    if(params->titlebarAppearsTransparent) {
-        [params->window setStyleMask:[params->window styleMask]| NSWindowStyleMaskFullSizeContentView];
-    }else{
-        [params->window setStyleMask:[params->window styleMask]&~NSWindowStyleMaskFullSizeContentView];
+    CGFloat x = params->x;
+    CGFloat y = params->y;
+    
+    if(!params->titlebarAppearsTransparent) {
+        x = -x;
+        y = -y;
+    }
+
+    NSWindow *window = params->window;
+    
+    BOOL titlebarAppearsTransparent = params->titlebarAppearsTransparent;
+    
+    if(!titlebarAppearsTransparent) {
+        adjustTrafficLights(window, x, y);
     }
     
-    [params->window setTitlebarAppearsTransparent:params->titlebarAppearsTransparent];
+    if(titlebarAppearsTransparent) {
+        [window setStyleMask:[window styleMask]| NSWindowStyleMaskFullSizeContentView];
+    }else{
+        [window setStyleMask:[window styleMask]&~NSWindowStyleMaskFullSizeContentView];
+    }
+        
+    [window setTitlebarAppearsTransparent:titlebarAppearsTransparent];
+
+    //this would shift form objects after eacvh toggle
+    /*
+    if(titlebarAppearsTransparent) {
+        window.titleVisibility = NSWindowTitleHidden;
+        NSToolbar *toolbar = [[NSToolbar alloc] initWithIdentifier:@"AppToolbar"];
+        toolbar.displayMode = NSToolbarDisplayModeIconOnly;
+        window.toolbar = toolbar;
+        [toolbar release];
+    }else{
+        window.titleVisibility = NSWindowTitleVisible;
+        window.toolbar = nil;                    // <- no toolbar
+    }
+     */
+    
+    if(titlebarAppearsTransparent) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            adjustTrafficLights(window, x, y);
+        });
+    }
+    
+
+ 
 }
 
 typedef struct {
@@ -286,6 +344,8 @@ void SET_WINDOW_STYLE(PA_PluginParameters params) {
                 setTitlebarAppearsTransparent_t params;
                 params.window = window;
                 params.titlebarAppearsTransparent = titlebarAppearsTransparent;
+                params.x = ob_get_n(options, L"x");
+                params.y = ob_get_n(options, L"y");
                 
                 PA_RunInMainProcess((PA_RunInMainProcessProcPtr)setTitlebarAppearsTransparent, &params);
             }

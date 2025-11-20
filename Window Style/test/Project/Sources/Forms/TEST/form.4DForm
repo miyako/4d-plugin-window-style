@@ -10,7 +10,7 @@
 	"windowMaxWidth": 32767,
 	"windowMaxHeight": 32767,
 	"rightMargin": 20,
-	"bottomMargin": 20,
+	"bottomMargin": 40,
 	"events": [
 		"onLoad",
 		"onPageChange",
@@ -195,7 +195,7 @@
 			}
 		}
 	],
-	"geometryStamp": 69,
+	"geometryStamp": 70,
 	"method": "method.4dm",
 	"colorScheme": "dark",
 	"editor": {
