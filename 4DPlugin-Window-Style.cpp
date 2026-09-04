@@ -253,6 +253,9 @@ static void setVibrance(setVibrance_t *params) {
         [effectView.trailingAnchor constraintEqualToAnchor: [params->window contentView].trailingAnchor].active = YES;
         [effectView.topAnchor constraintEqualToAnchor: [params->window contentView].topAnchor].active = YES;
         [effectView.bottomAnchor constraintEqualToAnchor: [params->window contentView].bottomAnchor].active = YES;
+        
+        //addSubview: took its own retain; release the +1 we own from `new`
+        [effectView release];
     }
 }
 
@@ -298,6 +301,10 @@ void SET_WINDOW_STYLE(PA_PluginParameters params) {
                             params.image = [[NSImage alloc]initWithCGImage:ci size:NSZeroSize];
                             
                             PA_RunInMainProcess((PA_RunInMainProcessProcPtr)setContentViewImage, &params);
+                            
+                            //layer.contents took its own retain in setContentViewImage; release our +1 references
+                            [params.image release];
+                            CGImageRelease(ci);
                         }
                     }
                 }else{
@@ -323,6 +330,10 @@ void SET_WINDOW_STYLE(PA_PluginParameters params) {
                             params.image = [[NSImage alloc]initWithContentsOfURL:u];
                             
                             PA_RunInMainProcess((PA_RunInMainProcessProcPtr)setContentViewImage, &params);
+                            
+                            //layer.contents took its own retain in setContentViewImage; release our +1 references
+                            [params.image release];
+                            CFRelease((CFURLRef)u);
                         }
                     }
                 }
@@ -386,7 +397,7 @@ void SET_WINDOW_STYLE(PA_PluginParameters params) {
                     params.state = ob_get_n(vibrance, L"state");
                     params.material = ob_get_n(vibrance, L"material");
                     params.blendingMode = ob_get_n(vibrance, L"blendingMode");
-                    params.emphasized = ob_get_b(options, L"emphasized");
+                    params.emphasized = ob_get_b(vibrance, L"emphasized");
                 }
 
                 PA_RunInMainProcess((PA_RunInMainProcessProcPtr)setVibrance, &params);
