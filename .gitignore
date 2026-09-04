@@ -1,2 +1,4 @@
 Window Style/build/*
 Window Style/test/userPreferences.*
+test/Project/DerivedData/*
+build/*
