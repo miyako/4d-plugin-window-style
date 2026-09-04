@@ -319,7 +319,7 @@ void SET_WINDOW_STYLE(PA_PluginParameters params) {
             
             if(ob_is_defined(options, L"backgroundImagePath")) {
                 CUTF8String backgroundImagePath;
-                if(ob_get_s(options, L"backgroundImagePath", &backgroundImagePath)){
+                if(ob_get_a(options, L"backgroundImagePath", &backgroundImagePath)){
                     @autoreleasepool {
                         NSString *u8 = [NSString stringWithUTF8String:(const char *)backgroundImagePath.c_str()];
                         NSURL *u = (NSURL *)CFURLCreateWithFileSystemPath(kCFAllocatorDefault, (CFStringRef)u8, kCFURLHFSPathStyle, false);
