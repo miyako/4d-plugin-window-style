@@ -20,6 +20,7 @@
 		D134D4AC1A030BA0008D14EF /* manifest.json in CopyFiles */ = {isa = PBXBuildFile; fileRef = D134D4A91A030B06008D14EF /* manifest.json */; };
 		D1B511B52632AABE00B81FD3 /* 4DPlugin-JSON.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D1B511B32632AABE00B81FD3 /* 4DPlugin-JSON.cpp */; };
 		D1B511B62632AABE00B81FD3 /* 4DPlugin-JSON.h in Headers */ = {isa = PBXBuildFile; fileRef = D1B511B42632AABE00B81FD3 /* 4DPlugin-JSON.h */; };
+		B869D8E0D5DA3D09BD83D075 /* constants.xlf in CopyFiles */ = {isa = PBXBuildFile; fileRef = D14D10DD1A03A8A5008B3411 /* constants.xlf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -30,6 +31,7 @@
 			dstSubfolderSpec = 7;
 			files = (
 				D134D4AC1A030BA0008D14EF /* manifest.json in CopyFiles */,
+				B869D8E0D5DA3D09BD83D075 /* constants.xlf in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
