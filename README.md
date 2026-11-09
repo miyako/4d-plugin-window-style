@@ -15,6 +15,67 @@ There is exactly one exposed command, `SET WINDOW STYLE`, which takes a window r
 
 **Platforms:** macOS only (Intel and Apple Silicon). There is no Windows implementation.
 
+## Manual maintenance and publication
+
+The two release-related Actions workflows are independent:
+
+- **Bump version** takes one required `patch`/`minor`/`major` choice (default
+  `patch`). Select a branch with the built-in ref selector. It validates source
+  metadata, commits a source-only bump to that branch, and pushes exactly that
+  one direct child through the mandatory pre-push guard. It never creates a tag
+  or release, builds native code, or dispatches another workflow. If the branch
+  moved or disappeared, it fails rather than rebasing, amending, or force-pushing.
+- **Build** has no custom inputs. Select the ref whose immutable event commit
+  should be built. Its canonical source `X.Y.Z` determines `vX.Y.Z` and the ZIP
+  and DMG filenames. It does not bump source. A published version cannot be
+  reused, even if its tag already points to the selected commit.
+
+Publication uses a repository-wide concurrency group across all refs, without
+cancelling a running publication; GitHub does not promise FIFO ordering.
+Authenticated, all-page release enumeration (including drafts) and an exact
+remote tag check run both before native work and after signing, notarization,
+and stapling. Tag creation, new release creation, and uploads to that newly
+returned release ID are separate create-only operations. Notes remain empty
+and generated release notes are disabled, matching the original release policy.
+There is no tag-push release trigger or automatic Bump-to-Build linkage.
+
+Publication is intentionally not transactional: a failure may leave a tag,
+release, or some assets. The workflow never deletes, overwrites, retries, or
+rolls back publication. Inspect the reported partial state and recover manually;
+do not rerun expecting an existing version to be reused. Native-generated
+executable, plist, copied localization, and signature bytes are retained for
+final verification; unexpected source/configuration/index changes stop
+publication before any write API call.
+
+Version authority follows the original coordinated
+`MARKETING_VERSION`/`CURRENT_PROJECT_VERSION`/plist contract, not its buggy
+marketing-only implementation. The migration repairs the proven stale source
+build tokens and copied **source** localization to the existing `2.0.4`
+authority without incrementing it. `Info.plist` retains its required
+`$(MARKETING_VERSION)` short-version reference and absent optional build key.
+Prebuilt bundle metadata is not normalized. Future bumps validate all source
+renders before writing and preserve original encodings, line endings, modes,
+and unrelated bytes.
+
+The native topology remains macOS-only: the `Default` target, universal
+`arm64`/`x86_64`, deployment override `11.0`, Cocoa linkage, resource phases,
+existing dependencies and prebuilt bundle contents are preserved. Freshness
+cleanup removes only generated target outputs/intermediates; it does not remove
+the bundle, Plugins directory, resources, dependencies, or prebuilt Windows
+binary. The build directory is explicitly the actual package root to prevent
+packaging a stale sibling bundle. Notarization requires both success status and
+JSON `Accepted`; stapling and strict signature verification must also succeed.
+
+Offline regression tests use disposable Git repositories and closed-PATH native
+stubs, never Xcode, signing credentials, notarization, 4D, or production
+publication. With Python, PyYAML and actionlint available, run the full suite:
+
+```sh
+python3 -B -m unittest discover -s tests -v
+python3 -B -m unittest discover -s .github/scripts -p 'test_*.py' -v
+actionlint .github/workflows/*.yml
+```
+
 ---
 
 ## Requirements & platform notes
