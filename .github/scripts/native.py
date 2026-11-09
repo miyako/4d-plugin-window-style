@@ -12,6 +12,7 @@ FILES = tuple(BUNDLE / relative for relative in (
 ))
 DIRECTORIES = (
     BUNDLE / "Contents/_CodeSignature",
+    Path("build/XCBuildData"),
     Path("build/Window Style.build"),
     Path("build/Default/Window Style.build"),
     Path("test/Plugins/Window Style.build"),

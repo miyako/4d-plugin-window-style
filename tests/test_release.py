@@ -233,7 +233,7 @@ class PublicationCLITests(GitFixture):
         for path in self.protected:
             target = self.local / path
             target.parent.mkdir(parents=True, exist_ok=True)
-            target.write_bytes(b"ignored-source.cpp\n" if path == ".gitignore" else b"protected")
+            target.write_bytes(b"ignored-source.cpp\nbuild/*\n" if path == ".gitignore" else b"protected")
         self.generated = tuple(str(path) for path in native.FILES[:3]) + (
             str(native.BUNDLE / "Contents/_CodeSignature/CodeResources"),)
         for path in self.generated:
@@ -271,6 +271,7 @@ class PublicationCLITests(GitFixture):
             self.generated[1]: plistlib.dumps({source.SHORT: self.version}, fmt=plistlib.FMT_BINARY),
             self.generated[2]: source.text(self.local / source.LOCALIZED).encode("utf-16"),
             self.generated[3]: b"fresh signature bytes",
+            "build/XCBuildData/build.db": b"fresh Xcode build database",
             "build/Default/Window Style.build/build.db": b"fresh intermediate",
         }
         for path, raw in data.items():
@@ -304,6 +305,40 @@ class PublicationCLITests(GitFixture):
         })
         self.assertTrue(all(call["endpoint"].startswith(UPLOAD + "?name=Window%20Style-")
                             for call in calls[-2:]))
+
+    def test_actual_cli_ignored_xcode_database_retained_without_relaxing_source_guards(self):
+        self.assertEqual(self.command("preflight").returncode, 0)
+        self.reset_api()
+        relative = "build/XCBuildData/build.db"
+        database = self.local / relative
+        database.parent.mkdir(parents=True)
+        database.write_bytes(b"stale initial database")
+        self.assertEqual(self.git("check-ignore", "--", relative), relative)
+        self.assertNotEqual(self.command("preflight").returncode, 0)
+        self.assertEqual(self.calls(), [])
+        database.unlink()
+
+        expected = self.build()
+        unexpected = self.local / "build/unexpected-source.cpp"
+        unexpected.write_bytes(b"ignored source is not a generated database")
+        self.assertNotEqual(self.command("publish").returncode, 0)
+        self.assertEqual(self.calls(), [])
+        unexpected.unlink()
+        config = self.local / ".gitignore"
+        config.write_bytes(self.baseline[".gitignore"] + b"unexpected-config\n")
+        self.git("add", "--", ".gitignore")
+        config.write_bytes(self.baseline[".gitignore"])
+        self.assertNotEqual(self.command("publish").returncode, 0)
+        self.assertEqual(self.calls(), [])
+        self.git("add", "--", ".gitignore")
+
+        result = self.command("publish")
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(database.read_bytes(), expected[relative])
+        self.assertEqual(self.git("check-ignore", "--", relative), relative)
+        self.assertEqual(self.git("rev-parse", "HEAD"), self.sha)
+        for path, raw in self.baseline.items():
+            self.assertEqual((self.local / path).read_bytes(), raw)
 
     def test_each_source_config_staged_unstaged_reversed_hidden_flag_fails_before_api(self):
         self.build()
@@ -425,7 +460,7 @@ class PublicationCLITests(GitFixture):
         result = self.command("check")
         self.assertEqual(result.returncode, 0, result.stderr)
         self.reset_api()
-        for name in ("build/XCBuildData/build.db",
+        for name in ("build/XCBuildData-evil/build.db",
                      "build/Default/Window Style.build-evil/injected",
                      "test/Plugins/Default/Window Style.bundle/Contents/Info.plist"):
             target = self.local / name
