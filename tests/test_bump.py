@@ -41,7 +41,10 @@ class BumpTests(GitFixture):
         self.assertEqual(changed, {str(source.PROJECT), str(source.LOCALIZED)})
         self.assertEqual((self.local / source.PLIST).read_bytes(),
                          self.git("show", self.sha + ":" + str(source.PLIST)).encode() + b"\n")
-        self.assertIn(bump.TRAILER, self.git("log", "-1", "--format=%B"))
+        message = self.git("log", "-1", "--format=%B")
+        self.assertTrue(message.endswith(
+            "Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>"
+        ), message)
         self.assertEqual(self.git("status", "--porcelain"), "")
         identity = "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
         self.assertEqual(self.git("log", "-1", "--format=%an <%ae>%n%cn <%ce>"),

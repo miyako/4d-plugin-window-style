@@ -12,7 +12,7 @@ import uuid
 sys.dont_write_bytecode = True
 ROOT = Path(__file__).resolve().parents[1]
 INTAKE = "095b5f82d37a1fcdd333f3d2be19c7350b010a5a"
-TRAILER = "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+TRAILER = "Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>"
 sys.path.insert(0, str(ROOT / ".github/scripts"))
 import source_version as source
 

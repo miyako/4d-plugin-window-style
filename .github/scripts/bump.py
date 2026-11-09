@@ -12,7 +12,7 @@ import repository
 import source_version
 
 
-TRAILER = "Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>"
+TRAILER = "Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>"
 HOOK = Path(__file__).resolve().parents[1] / "hooks/pre-push"
 run = repository.run
 
