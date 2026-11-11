@@ -1,0 +1,33 @@
+name: Ownership
+
+on:
+  push:
+    branches:
+      - miyako-window-style-ownership
+      - main
+    paths:
+      - '4D Plugin API/**'
+      - '4DPlugin-Window-Style.*'
+      - 'support/**'
+      - '.github/tests/**'
+      - '.github/workflows/ownership.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  synthetic-ownership:
+    runs-on: macos-latest
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+      - name: Complete actual sources, synthetic boundaries, ASan and UBSan
+        run: python3 .github/tests/test_ownership.py
+      - name: Immutable baseline with identical final harness
+        run: python3 .github/tests/test_ownership_baseline.py
+      - name: Protect SDK, release automation, manifests and binaries
+        run: python3 .github/tests/test_ownership_preservation.py

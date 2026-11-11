@@ -51,11 +51,15 @@ static PA_Picture ob_get_p(PA_ObjectRef obj, const wchar_t *_key) {
         if(is_defined)
         {
             PA_Variable v = PA_GetObjectProperty(obj, &key);
-            if(PA_GetVariableKind(v) == eVK_Picture)
+            const PA_ErrorCode error = PA_GetLastError();
+            if(error == eER_NoErr && PA_GetVariableKind(v) == eVK_Picture)
             {
-                p = PA_GetPictureVariable(v);
+                PA_Picture retained = PA_DuplicatePicture(PA_GetPictureVariable(v), 1);
+                if(PA_GetLastError() == eER_NoErr) p = retained;
             }
+            if(error == eER_NoErr) PA_ClearVariable(&v);
         }
+        PA_DisposeUnistring(&key);
     }
     
     return p;
@@ -286,6 +290,7 @@ void SET_WINDOW_STYLE(PA_PluginParameters params) {
                     params.color  = color;
                     
                     PA_RunInMainProcess((PA_RunInMainProcessProcPtr)setBackgroundColor, &params);
+                    PA_DisposeObject(backgroundColor);
                     
                 }
             }
@@ -307,6 +312,7 @@ void SET_WINDOW_STYLE(PA_PluginParameters params) {
                             CGImageRelease(ci);
                         }
                     }
+                    PA_DisposePicture(backgroundImage);
                 }else{
                     
                     setContentViewImage_t params;
@@ -401,6 +407,7 @@ void SET_WINDOW_STYLE(PA_PluginParameters params) {
                 }
 
                 PA_RunInMainProcess((PA_RunInMainProcessProcPtr)setVibrance, &params);
+                if(vibrance) PA_DisposeObject(vibrance);
             }
 
         }
