@@ -86,6 +86,29 @@ actionlint .github/workflows/*.yml
 
 ---
 
+## Ownership regression checks
+
+The unsigned [ownership audit](.github/tests/ownership-audit.md) compiles the
+complete bundled SDK, all four wrappers, JSON helpers and actual dispatcher
+against synthetic in-memory engine/platform boundaries. It does not open a
+window, read an image file, run 4D, or build/sign/package the plugin.
+The separate **Ownership** workflow runs only on relevant pushes to `main` or
+the exact audit branch; it cannot publish a release.
+
+On macOS, with Python's standard library and Apple Clang already available:
+
+```sh
+python3 -B .github/tests/test_ownership.py
+python3 -B .github/tests/test_ownership_baseline.py
+python3 -B .github/tests/test_ownership_preservation.py
+```
+
+The baseline comparison requires the immutable Git history (CI checks out
+with `fetch-depth: 0`). SDK files, native projects, release workflows,
+manifests and existing binaries stay unchanged.
+
+---
+
 ## Requirements & platform notes
 
 - **macOS only.** This plugin has no `VERSIONWIN` code path at all — there is no Windows build, and none is planned as part of this plugin's design.
